@@ -29,7 +29,7 @@ WORKDIR /app
 COPY --from=build /app/target/demo-0.0.1-SNAPSHOT.jar /app/demo.jar
 
 # Expose port 8080 (Spring Boot default port)
-EXPOSE 8000
+EXPOSE 8080
 
 # Command to run the application
 ENTRYPOINT ["java", "-jar", "/app/demo.jar"]
