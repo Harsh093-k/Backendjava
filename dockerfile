@@ -1,5 +1,14 @@
-FROM maven:3.4.3-openjdk-17 AS build
+# Use an official Java runtime as a parent image
+FROM openjdk:17-jdk-slim as build
+
+# Copy the Maven project POM file
 COPY . .
+# Download dependencies (this will cache the dependencies if unchanged)
+RUN mvn clear package -DskipTests
+
+# Copy the entire project into the working directory
+COPY . .
+
 # Build the Spring Boot application (package it into a JAR file)
 RUN mvn clean package -DskipTests
 
